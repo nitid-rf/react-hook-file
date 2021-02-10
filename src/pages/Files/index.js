@@ -6,13 +6,14 @@ import DownloadExcel from "./downloadExcel";
 function App() {
   return (
     <div>
-      <h1>Upload File</h1>
-      <UploadFile />
+      {/* <h1>Upload File</h1>
+      <UploadFile /> */}
       <h1>Download File</h1>
       <DownloadFile />
       <hr />
-      <a href="https://www.npmjs.com/package/react-to-pdf">Credit</a>
-
+      {/* <a href="https://www.npmjs.com/package/react-to-pdf">Credit</a> */}
+      <hr />
+      <h1>Download Excel File</h1>
       <DownloadExcel />
     </div>
   );
