@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState, useRef } from 'react'
 import "antd/dist/antd.css";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import Pdf from "react-to-pdf";
+import ExportPdf from "../../containers/exportPdf";
+import { Table } from "antd";
+import { data, columns } from "../../mockdata/contacts";
 
 const ref = React.createRef();
 
 const DownloadFile = () => {
-
+  const refSearchInput = useRef()
   return (
-    <div >
+    <div>
       <Pdf targetRef={ref} filename="code-example.pdf">
         {({ toPdf }) => (
           <Button onClick={toPdf} icon={<DownloadOutlined />}>
@@ -17,6 +20,9 @@ const DownloadFile = () => {
           </Button>
         )}
       </Pdf>
+
+      {/* <Table ref={refSearchInput} columns={columns} dataSource={data}></Table> */}
+
       <table ref={ref}>
         <tr>
           <th>Company</th>
@@ -28,16 +34,7 @@ const DownloadFile = () => {
           <td>Maria Anders</td>
           <td>Germany</td>
         </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-        </tr>
+        
       </table>
     </div>
   );

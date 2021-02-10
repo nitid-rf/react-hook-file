@@ -1,6 +1,7 @@
 import React from "react";
 import UploadFile from "./uploadFile";
 import DownloadFile from "./downloadFile";
+import DownloadExcel from "./downloadExcel";
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <DownloadFile />
       <hr />
       <a href="https://www.npmjs.com/package/react-to-pdf">Credit</a>
+
+      <DownloadExcel />
     </div>
   );
 }
