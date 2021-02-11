@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 import $ from "jquery";
 // import Pdf from "react-to-pdf";
 import { Table } from "antd";
@@ -31,19 +32,34 @@ const DownloadFile = () => {
   // doc.save("Test.pdf");
 
   const print = () => {
-    var doc = new jsPDF();
-    doc.save("download.pdf");
+    // var doc = new jsPDF('p', 'mm', [297, 210]);
+    // doc.save("download.pdf");
+
+    var doc = new jsPDF("p", "pt", "a3", true);
+    doc.html(document.getElementById("testfile"), {
+      callback: function (doc) {
+        doc.save("download.pdf");
+      },
+    });
 
     // var doc = new jsPDF();
-    // doc.html(document.getElementById("testfile"),
-    // {
-    //   callback: function (doc) {
-    //     // doc.setFont("arial", "bold");
-    //     // doc.setFontSize(8);
-    //     doc.save("download.pdf");
-    //   },
-    // }
-    // );
+    // doc.autoTable({
+    //   head: [['Name', 'Email', 'Country']],
+    //   body: [
+    //     ['David', 'david@example.com', 'Sweden'],
+    //     ['Castille', 'castille@example.com', 'Spain'],
+    //     // ...
+    //   ],
+    // })
+    // doc.save("table.pdf");
+
+    // var doc = new jsPDF()
+    // doc.autoTable({
+    //   html: '.testfile',
+    //   tableWidth: 'wrap',
+    //   styles: { cellPadding: 0.5, fontSize: 8 },
+    // })
+    // return doc.save("table.pdf")
   };
 
   return (
@@ -71,12 +87,16 @@ const DownloadFile = () => {
         </tr>
       </table> */}
 
-      <Button 
-      onClick={print} 
-      icon={<DownloadOutlined />}>
+      <Button onClick={print} icon={<DownloadOutlined />}>
         Click to Download Pdf
       </Button>
-      <Table id="testfile" columns={columns} dataSource={data}></Table>
+
+      <Table
+        class="testfile"
+        id="testfile"
+        columns={columns}
+        dataSource={data}
+      ></Table>
     </div>
   );
 };
